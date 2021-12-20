@@ -1,0 +1,25 @@
+<div id="app">
+    <ul>
+        <li v-for="fact in facts">
+            {{ fact.fact }}
+        </li>
+    </ul>
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            facts: []
+        },
+
+        created () {
+            fetch('https://catfact.ninja/facts')
+                .then(response => response.json())
+                .then(json => {
+                    this.facts = json.data
+                })
+        }
+    })
+</script>
